@@ -25,7 +25,8 @@ app.get('/', (req, res) => {
 app.get('/get/the/code', (req, res) => {
 
     const DeviceCode_Endpoint = `https://accounts.google.com/o/oauth2/device/code`;
-    const Client_Id = "593767555101-6cdsou4a41hhirll0joq906peado0fh8.apps.googleusercontent.com";
+    //const Client_Id = "593767555101-6cdsou4a41hhirll0joq906peado0fh8.apps.googleusercontent.com";
+    const Client_Id = process.env.CLIENT_ID;
     const Scope = 'email profile https://www.googleapis.com/auth/youtube.readonly';
 
     let body = `client_id=${Client_Id}&scope=${Scope}`;
@@ -54,8 +55,10 @@ app.post('/checking', (req, res) => {
 
     const Token_Endpoint = `https://www.googleapis.com/oauth2/v4/token`;
     const Grant_Type = 'http://oauth.net/grant_type/device/1.0';
-    const Client_Id = '593767555101-6cdsou4a41hhirll0joq906peado0fh8.apps.googleusercontent.com';
-    const Client_Secret = 'nTjTQ2oBU93VGPEuDFlqUG4I';
+    //const Client_Id = '593767555101-6cdsou4a41hhirll0joq906peado0fh8.apps.googleusercontent.com';
+    const Client_Id = process.env.CLIENT_ID;
+    //const Client_Secret = 'nTjTQ2oBU93VGPEuDFlqUG4I';
+    const Client_Secret = process.env.CLIENT_SECRET;
     const Device_Code = req.body.device_code;
 
     let body = `grant_type=${Grant_Type}&client_id=${Client_Id}&client_secret=${Client_Secret}&code=${Device_Code}`;
